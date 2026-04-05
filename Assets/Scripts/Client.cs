@@ -1,23 +1,51 @@
-using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class Client : MonoBehaviour
 {
-    [SerializeField] private Sprite[] ClientsSprites;
+    [SerializeField] private Sprite[] EmotionSprites;
+    private int ChosenOrder;
 
     private void Start()
     {
-        NewClient();
+        MoveClient(1, false);
+        SetEmotion(0);
     }
 
-    private void NewClient()
+    public void SetEmotion(int EmotionIndex)
     {
-        Sprite NewClient = ClientsSprites[Random.Range(0, ClientsSprites.Length)];
-        GetComponent<SpriteRenderer>().sprite = NewClient;
+        GetComponent<SpriteRenderer>().sprite = EmotionSprites[EmotionIndex];
     }
 
-    private void HideClient()
+    public void MoveClient(int Direction, bool CanDelete)
     {
+        if (CanDelete)
+            transform.DOMoveX(transform.position.y - (0.1f * Direction), 0.5f).OnComplete(() => Destroy(gameObject));
+        else
+            transform.DOMoveX(transform.position.y + (0.1f * Direction), 0.5f).OnComplete(() => Order());
+    }
 
+    private void Order()
+    {
+        ChosenOrder = Random.Range(0, 4);
+    }
+
+    public void ReceiveOrder(int ReceivedOrder)
+    {
+        int MoneyToAdd = 0;
+        if (ReceivedOrder == ChosenOrder)
+        {
+            MoneyToAdd = 10;
+            SetEmotion(2);
+        }
+        else
+        {
+            MoneyToAdd = 2;
+            SetEmotion(3);
+        }
+
+        UIManager.Instance.AttentedClients++;
+        UIManager.Instance.UpdateMoney(MoneyToAdd);
     }
 }
+

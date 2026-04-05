@@ -3,49 +3,32 @@ using UnityEngine;
 public class FoodSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject FoodPrefab;
-    private GameObject CurrentFood;
-    private Collider2D SpawnerCollider;
+    private Collider2D SpawnArea;
+    private Camera Cam;
 
-    private void Start()
+    private void Awake()
     {
-        SpawnerCollider = GetComponent<Collider2D>();
+        SpawnArea = GetComponent<Collider2D>();
+        Cam = Camera.main;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && IsMouseOverSpawner())
-            SpawnFood();
-
-        if (CurrentFood != null)
-            FollowMouse();
-
-        if (Input.GetMouseButtonUp(0) && CurrentFood != null)
-            DestroyFood();
+        if (Input.GetMouseButtonDown(0) && IsMouseOver())
+            Spawn();
     }
 
-    private bool IsMouseOverSpawner()
+    private bool IsMouseOver()
     {
-        Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return SpawnerCollider.OverlapPoint(MousePos);
+        Vector3 Pos = Cam.ScreenToWorldPoint(Input.mousePosition);
+        return SpawnArea.OverlapPoint(Pos);
     }
 
-    private void SpawnFood()
+    private void Spawn()
     {
-        if (CurrentFood != null) return;
+        Vector3 Pos = Cam.ScreenToWorldPoint(Input.mousePosition);
+        Pos.z = 0;
 
-        Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        CurrentFood = Instantiate(FoodPrefab, MousePos, Quaternion.identity);
-    }
-
-    private void FollowMouse()
-    {
-        Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        CurrentFood.transform.position = MousePos;
-    }
-
-    private void DestroyFood()
-    {
-        Destroy(CurrentFood);
-        CurrentFood = null;
+        Instantiate(FoodPrefab, Pos, Quaternion.identity);
     }
 }

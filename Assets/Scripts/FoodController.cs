@@ -3,46 +3,75 @@ using UnityEngine;
 public class FoodController : MonoBehaviour
 {
     public enum FoodType { Bread, Filling, Topping, Sauce }
-    [SerializeField] private FoodType Type; 
+    public FoodType Type;
     [SerializeField] private bool IsVegetarian;
-    private DishHandler Dish;
-    private Animator Animator;
 
-    private void Start()
+    private DishHandler CurrentDish;
+    private DishHandler LastDish;
+
+    private Animator Anim;
+    private Camera Cam;
+
+    private void Awake()
     {
-        Animator = GetComponent<Animator>();
+        Anim = GetComponent<Animator>();
+        Cam = Camera.main;
     }
 
     private void Update()
     {
-        Debug.Log("Dish: " + Dish + " | Resultado: " + Dish?.BuildDish(Type));
+        Drag();
+
         if (Input.GetMouseButtonUp(0))
+            TryPlace();
+    }
+
+    private void Drag()
+    {
+        if (!Input.GetMouseButton(0)) return;
+
+        Vector3 Pos = Cam.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3(Pos.x, Pos.y, 0);
+    }
+
+    private void TryPlace()
+    {
+        if (CurrentDish == null)
         {
-            if (Dish != null && Dish.BuildDish(Type))
-            {
-                transform.position = Dish.gameObject.transform.position;
-                Animator.enabled = false;
-                enabled = false;
-            }
-            else
-                Destroy(gameObject);
+            Destroy(gameObject);
+            return;
         }
-        else if (Input.GetMouseButton(0))
+
+        bool Success = CurrentDish.BuildDish(this);
+
+        if (Success)
         {
-            Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(MousePos.x, MousePos.y, 0);
+            if (!IsVegetarian)
+                LastDish.IsVegetarianDish = false;
+            transform.position = CurrentDish.transform.position;
+            Anim.enabled = false;
+            enabled = false;
+        }
+        else
+            Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D Col)
+    {
+        if (!Col.CompareTag("Dish")) return;
+
+        if (Col.TryGetComponent(out DishHandler Dish))
+        {
+            CurrentDish = Dish;
+            LastDish = Dish;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D Col)
     {
-        if (collision.CompareTag("Dish"))
-            Dish = collision.TryGetComponent<DishHandler>(out var dish) ? dish : null;
-    }
+        if (!Col.CompareTag("Dish")) return;
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Dish") && Dish != null) 
-            Dish = null; 
+        if (CurrentDish != null)
+            CurrentDish = null;
     }
 }

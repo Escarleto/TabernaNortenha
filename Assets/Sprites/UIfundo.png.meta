@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9ed51981bf365934fa097b7275eb2038
+guid: 09b394b15b6815345981995a08bbe702
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5351130936459227333
-    second: imagescc-removebg-preview_0
+      213: 4689502981269906821
+    second: UIfundo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: imagescc-removebg-preview_0
+      name: UIfundo_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 19
-        width: 197
-        height: 194
+        x: 0
+        y: 0
+        width: 712
+        height: 357
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3f8eb9c3c6fcb5b0800000000000000
-      internalID: -5351130936459227333
+      spriteID: 5856abb8d16741140800000000000000
+      internalID: 4689502981269906821
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      imagescc-removebg-preview_0: -5351130936459227333
+      UIfundo_0: 4689502981269906821
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

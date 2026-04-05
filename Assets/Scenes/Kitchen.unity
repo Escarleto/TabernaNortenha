@@ -270,7 +270,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -289,8 +289,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4842d4ee911af254c8fe6d3404c576e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DishHandler
-  FinalSprites: []
-  IsVegetarianDish: 0
+  FinalSprites:
+  - {fileID: 21300000, guid: e64aac97b6d7d7e4dbc5b9da0fbfaebd, type: 3}
+  - {fileID: 21300000, guid: c2370c7ac4f4ed445b9cae3c4307bc4d, type: 3}
+  - {fileID: 21300000, guid: 446de45909eb33e41b6985fdc4423e73, type: 3}
+  IsVegetarianDish: 1
 --- !u!1 &72425209
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 72425209}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.48, y: 3.68999, z: 0}
+  m_LocalPosition: {x: 2.58, y: 3.68999, z: 0}
   m_LocalScale: {x: 1.2006108, y: 1.2006108, z: 1.2006108}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1249,7 +1252,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 44cc1449614d6c74084a7c561e5d1bcc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 31e144b1054fed042a15ed3f4a950681, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1281,7 +1284,7 @@ Transform:
   m_GameObject: {fileID: 1104519283}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.4499998, y: 3.69, z: 0}
+  m_LocalPosition: {x: -3.7, y: 3.69, z: 0}
   m_LocalScale: {x: 1.6430391, y: 1.6430391, z: 1.6430391}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1315,7 +1318,7 @@ Transform:
   m_GameObject: {fileID: 1178630745}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 3.69, z: 0}
+  m_LocalPosition: {x: -0.35, y: 3.69, z: 0}
   m_LocalScale: {x: 0.7639408, y: 0.7639408, z: 0.7639408}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1636,7 +1639,7 @@ Transform:
   m_GameObject: {fileID: 1567827413}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.4, y: 3.82, z: 0}
+  m_LocalPosition: {x: 6.85, y: 3.82, z: 0}
   m_LocalScale: {x: 1.2114439, y: 1.2114439, z: 1.2114439}
   m_ConstrainProportionsScale: 1
   m_Children: []

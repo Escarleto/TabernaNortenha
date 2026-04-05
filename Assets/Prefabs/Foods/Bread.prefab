@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24400b5cbc833246b5ddca3cc3245db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoodController
-  Type: 0
-  IsVegetarian: 0
+  type: 0
+  isVegetarian: 0
 --- !u!212 &7438336678172702229
 SpriteRenderer:
   serializedVersion: 2
@@ -176,14 +176,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6397701642893426988}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

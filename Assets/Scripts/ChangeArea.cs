@@ -1,19 +1,15 @@
-using Unity.VectorGraphics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class ChangeArea : MonoBehaviour
 {
-    [SerializeField] private UnityEditor.SceneAsset ToScene;
-    private string SceneName;
-
-    private void Start()
-    {
-        SceneName = ToScene.name;
-    }
+    [SerializeField] private bool ToKitchen = true;
 
     private void OnMouseDown()
     {
-        SceneManager.LoadScene(SceneName, LoadSceneMode.Single);
+        if (ToKitchen)
+            Camera.main.transform.DOMoveY(Camera.main.transform.position.y - 10.88f, 0.5f);
+        else
+            Camera.main.transform.DOMoveY(Camera.main.transform.position.y + 10.88f, 0.5f);
     }
 }
