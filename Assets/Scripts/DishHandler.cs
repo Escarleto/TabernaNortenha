@@ -1,17 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class DishHandler : MonoBehaviour
 {
     private FoodController.FoodType?[] Dish = new FoodController.FoodType?[7];
     private List<FoodController> FoodsInDish = new List<FoodController>();
 
-    [SerializeField] private Sprite[] FinalSprites;
+    [SerializeField] private GameObject[] FinalDishes;
     private FoodController LastFood;
+    private Dish LastDish;
 
     private int Index;
     public bool DishComplete { get; private set; }
-    public bool IsVegetarianDish = true;
+    [System.NonSerialized] public bool IsVegetarianDish = true;
 
     public bool BuildDish(FoodController Food)
     {
@@ -41,7 +43,6 @@ public class DishHandler : MonoBehaviour
         }
         
         Index++;
-        Debug.Log(Index);
         return true;
     }
 
@@ -66,12 +67,21 @@ public class DishHandler : MonoBehaviour
     {
         DishComplete = true;
 
-        var sr = GetComponent<SpriteRenderer>();
+        var FinalDishIndex =
+            IsVegetarianDish ? 0 :
+            Dish[4] == FoodController.FoodType.Topping ? 1 :
+            2;
 
-        sr.sprite =
-            IsVegetarianDish ? FinalSprites[0] :
-            Dish[4] == FoodController.FoodType.Topping ? FinalSprites[1] :
-            FinalSprites[2];
+        LastDish = Instantiate(
+            FinalDishes[FinalDishIndex],
+            transform.position,
+            Quaternion.identity,
+            transform
+        ).GetComponent<Dish>();
+
+        UIManager.Instance.CurrentDish = LastDish;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
 
         foreach (var Food in FoodsInDish)
         {
@@ -84,13 +94,14 @@ public class DishHandler : MonoBehaviour
         Dish = new FoodController.FoodType?[6];
         Index = 0;
         LastFood = null;
-        IsVegetarianDish = true;
-
-        Invoke(nameof(ResetDish), 0.5f);
     }
 
-    private void ResetDish()
+    public void ResetDish()
     {
+        IsVegetarianDish = true;
         DishComplete = false;
+        Destroy(LastDish.gameObject);
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
     }
 }

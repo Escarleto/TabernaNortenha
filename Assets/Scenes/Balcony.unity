@@ -815,7 +815,7 @@ GameObject:
   - component: {fileID: 502540144}
   - component: {fileID: 502540141}
   m_Layer: 5
-  m_Name: UIDocument
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -871,9 +871,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08555f3ff040964fa90a0e3675a2648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  ClientManager: {fileID: 1186231966}
   AttentedClients: 0
   Day: 0
   Money: 0
+  CurrentDish: {fileID: 0}
 --- !u!1 &582059724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b061bf29c79398f47adf1fab8c050ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeArea
-  ToKitchen: 0
+  Plate: {fileID: 1595821077}
+  IsKitchen: 1
 --- !u!1 &1112107068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,11 +2413,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4842d4ee911af254c8fe6d3404c576e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DishHandler
-  FinalSprites:
-  - {fileID: 21300000, guid: e64aac97b6d7d7e4dbc5b9da0fbfaebd, type: 3}
-  - {fileID: 21300000, guid: c2370c7ac4f4ed445b9cae3c4307bc4d, type: 3}
-  - {fileID: 21300000, guid: 446de45909eb33e41b6985fdc4423e73, type: 3}
-  IsVegetarianDish: 1
+  FinalDishes:
+  - {fileID: 8822704572126228826, guid: f6bcb1d9bf9be6048a2960f89b4acb35, type: 3}
+  - {fileID: 5330348517396304359, guid: 6ee335996e3e58346a5b8591d95d7364, type: 3}
+  - {fileID: 6344019867592388429, guid: 71d4276dd70aade49ae0f3d957aeeff3, type: 3}
 --- !u!4 &1595821078
 Transform:
   m_ObjectHideFlags: 0
@@ -3177,7 +3179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b061bf29c79398f47adf1fab8c050ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeArea
-  ToKitchen: 1
+  Plate: {fileID: 0}
+  IsKitchen: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

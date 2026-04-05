@@ -8,8 +8,9 @@ public class Client : MonoBehaviour
 
     private void Start()
     {
-        MoveClient(1, false);
+        MoveClient(false);
         SetEmotion(0);
+        UIManager.Instance.HasClient = true;
     }
 
     public void SetEmotion(int EmotionIndex)
@@ -17,17 +18,18 @@ public class Client : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = EmotionSprites[EmotionIndex];
     }
 
-    public void MoveClient(int Direction, bool CanDelete)
+    public void MoveClient(bool CanDelete)
     {
         if (CanDelete)
-            transform.DOMoveX(transform.position.y - (0.1f * Direction), 0.5f).OnComplete(() => Destroy(gameObject));
+            transform.DOMoveX(transform.position.y - 20f, 0.5f).OnComplete(() => Destroy(gameObject));
         else
-            transform.DOMoveX(transform.position.y + (0.1f * Direction), 0.5f).OnComplete(() => Order());
+            transform.DOMoveX(transform.position.y + 0.1f, 0.5f).OnComplete(() => Order());
     }
 
     private void Order()
     {
-        ChosenOrder = Random.Range(0, 4);
+        ChosenOrder = Random.Range(1, 4);
+        Debug.Log(ChosenOrder);
     }
 
     public void ReceiveOrder(int ReceivedOrder)
@@ -45,6 +47,7 @@ public class Client : MonoBehaviour
         }
 
         UIManager.Instance.AttentedClients++;
+        UIManager.Instance.HasClient = false;
         UIManager.Instance.UpdateMoney(MoneyToAdd);
     }
 }
