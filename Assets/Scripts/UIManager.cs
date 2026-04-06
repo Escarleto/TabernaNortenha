@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
@@ -13,7 +14,7 @@ public class UIManager : MonoBehaviour
     private Label Timer;
     private Label MoneyUI;
     private Label ClientsUI;
-    private int TimerSeconds = 200;
+    private int TimerSeconds = 5;
     public Dish CurrentDish;
     public bool HasClient;
 
@@ -56,5 +57,7 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             TimerSeconds--;
         }
+
+        SceneManager.LoadScene("EndScreen");
     }
 }

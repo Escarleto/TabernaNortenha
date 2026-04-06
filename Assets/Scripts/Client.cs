@@ -30,6 +30,7 @@ public class Client : MonoBehaviour
     {
         ChosenOrder = Random.Range(1, 4);
         Debug.Log(ChosenOrder);
+        SetEmotion(1);
     }
 
     public void ReceiveOrder(int ReceivedOrder)
