@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; set; }
     [SerializeField] private ClientManager ClientManager;
+    [SerializeField] private GameObject[] Receits;
     public int AttentedClients = -1;
     public int Day;
     public int Money = 0;
@@ -14,7 +15,7 @@ public class UIManager : MonoBehaviour
     private Label Timer;
     private Label MoneyUI;
     private Label ClientsUI;
-    private int TimerSeconds = 5;
+    private int TimerSeconds = 200;
     public Dish CurrentDish;
     public bool HasClient;
 
@@ -48,6 +49,11 @@ public class UIManager : MonoBehaviour
         CurrentDish = null;
     }
 
+    public void ShowReceit(int Receit, bool Show)
+    {
+        Receits[Receit].SetActive(Show);
+    }
+
     private IEnumerator StartDay()
     {
         DayUI.text = Day.ToString();
@@ -57,7 +63,6 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             TimerSeconds--;
         }
-
         SceneManager.LoadScene("EndScreen");
     }
 }

@@ -69,7 +69,7 @@ public class DishHandler : MonoBehaviour
 
         var FinalDishIndex =
             IsVegetarianDish ? 0 :
-            Dish[4] == FoodController.FoodType.Topping ? 1 :
+            Dish[5] == FoodController.FoodType.Topping ? 1 :
             2;
 
         LastDish = Instantiate(

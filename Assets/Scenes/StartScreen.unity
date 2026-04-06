@@ -404,7 +404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "OBRIGADO POR  EXPERIMENTARES O NOSSO PROT\xD3TIPO :D"
+  m_text: "TABERNA A NORTENHA\n(PROT\xD3TIPO)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71e86f0da1d16294bb2fa7eab28a0110, type: 2}
   m_sharedMaterial: {fileID: 2363400681674118826, guid: 71e86f0da1d16294bb2fa7eab28a0110, type: 2}
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.2
+  m_fontSize: 44.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -620,7 +620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rejogar
+  m_text: Jogar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71e86f0da1d16294bb2fa7eab28a0110, type: 2}
   m_sharedMaterial: {fileID: 2363400681674118826, guid: 71e86f0da1d16294bb2fa7eab28a0110, type: 2}
