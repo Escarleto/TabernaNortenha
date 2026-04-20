@@ -26,7 +26,7 @@ public class Client : MonoBehaviour
         if (CanDelete)
             transform.DOMoveX(transform.position.y - 20f, 0.5f).OnComplete(() => Destroy(gameObject));
         else
-            transform.DOMoveX(transform.position.y + 0.1f, 0.5f).OnComplete(() => Order());
+            transform.DOMoveX(transform.position.y + 0.1f, 0.5f).SetDelay(Random.Range(0.5f, 1.5f)).OnComplete(() => Order());
     }
 
     private void Order()
