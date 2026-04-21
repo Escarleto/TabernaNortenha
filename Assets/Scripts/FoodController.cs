@@ -46,8 +46,8 @@ public class FoodController : MonoBehaviour
 
         if (Success)
         {
-            if (!IsVegetarian)
-                LastDish.IsVegetarianDish = false;
+            if (!IsVegetarian) LastDish.IsVegetarianDish = false;
+            if (CurrentDish == null) return;
             transform.position = CurrentDish.transform.position;
             Anim.enabled = false;
             enabled = false;

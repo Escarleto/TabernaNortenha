@@ -25,7 +25,7 @@ public class ClientManager : MonoBehaviour
         float Delay = Random.Range(1f, 5f);
         
         yield return new WaitForSeconds(1f);
-        CurrentClient.MoveClient(true);
+        CurrentClient.DeleteCurrentClient();
         CurrentClient = null;
         
         yield return new WaitForSeconds(Delay);

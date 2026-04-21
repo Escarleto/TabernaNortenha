@@ -5,7 +5,7 @@ public class ChangeArea : MonoBehaviour
 {
     [SerializeField] private DishHandler Plate;
     [SerializeField] private bool IsKitchen;
-
+    
     private void OnMouseDown()
     {   
         if (!UIManager.Instance.HasClient) return;

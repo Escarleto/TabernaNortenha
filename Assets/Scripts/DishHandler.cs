@@ -1,10 +1,11 @@
 using UnityEngine;
-using System.Collections.Generic;
 using Unity.VisualScripting;
+using System.Collections.Generic;
+using System;
 
 public class DishHandler : MonoBehaviour
 {
-    private FoodController.FoodType?[] Dish = new FoodController.FoodType?[7];
+    private List<FoodController.FoodType?> Dish = new List<FoodController.FoodType?>();
     private List<FoodController> FoodsInDish = new List<FoodController>();
 
     [SerializeField] private GameObject[] FinalDishes;
@@ -22,11 +23,17 @@ public class DishHandler : MonoBehaviour
         FoodController.FoodType FoodType = Food.Type;
         if (!IsValid(FoodType)) return false;
 
-        Dish[Index] = FoodType;
+        // garante que a lista tenha espaço suficiente
+        if (Dish.Count <= Index)
+            Dish.Add(FoodType);
+        else
+            Dish[Index] = FoodType;
+
         FoodsInDish.Add(Food);
 
         if (LastFood != null)
-            Food.gameObject.GetComponent<SpriteRenderer>().sortingOrder = LastFood.gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
+            Food.gameObject.GetComponent<SpriteRenderer>().sortingOrder =
+                LastFood.gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
 
         LastFood = Food;
 
@@ -36,12 +43,12 @@ public class DishHandler : MonoBehaviour
             return true;
         }
 
-        if ((Index == 5  || Index == 6) && FoodType == FoodController.FoodType.Sauce)
+        if ((Index == 5 || Index == 6) && FoodType == FoodController.FoodType.Sauce)
         {
             Finish();
             return true;
         }
-        
+
         Index++;
         return true;
     }
@@ -55,10 +62,10 @@ public class DishHandler : MonoBehaviour
 
         4 => Food == FoodController.FoodType.Topping,
 
-        5 => Food == FoodController.FoodType.Topping ||
-             Food == FoodController.FoodType.Sauce,
+        5 or 6 => Food == FoodController.FoodType.Topping ||
+                  Food == FoodController.FoodType.Sauce,
 
-        6 => Food == FoodController.FoodType.Sauce,
+        7 => Food == FoodController.FoodType.Sauce,
 
         _ => false
     };
@@ -68,8 +75,8 @@ public class DishHandler : MonoBehaviour
         DishComplete = true;
 
         var FinalDishIndex =
-            IsVegetarianDish ? 0 :
-            Dish[5] == FoodController.FoodType.Topping ? 1 :
+            IsVegetarianDish == true ? 0 :
+            (Dish.Count > 5 && Dish[5] == FoodController.FoodType.Topping && IsVegetarianDish == false) ? 1 :
             2;
 
         LastDish = Instantiate(
@@ -91,7 +98,7 @@ public class DishHandler : MonoBehaviour
 
         FoodsInDish.Clear();
 
-        Dish = new FoodController.FoodType?[6];
+        Dish.Clear();
         Index = 0;
         LastFood = null;
     }
@@ -100,8 +107,15 @@ public class DishHandler : MonoBehaviour
     {
         IsVegetarianDish = true;
         DishComplete = false;
-        Destroy(LastDish.gameObject);
+
+        if (LastDish != null)
+            Destroy(LastDish.gameObject);
+
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<Collider2D>().enabled = true;
+
+        Dish.Clear();
+        Index = 0;
+        LastFood = null;
     }
 }

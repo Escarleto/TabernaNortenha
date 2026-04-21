@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     private Label Timer;
     private Label MoneyUI;
     private Label ClientsUI;
-    private int TimerSeconds = 200;
+    private int TimerSeconds = 180;
     public Dish CurrentDish;
     public bool HasClient;
 

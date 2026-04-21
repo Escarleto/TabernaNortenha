@@ -10,7 +10,7 @@ public class Client : MonoBehaviour
 
     private void Start()
     {
-        MoveClient(false);
+        NewClient();
         SetEmotion(0);
         UIManager.Instance.HasClient = true;
         OrderSpeech.SetActive(false);
@@ -21,12 +21,14 @@ public class Client : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = EmotionSprites[EmotionIndex];
     }
 
-    public void MoveClient(bool CanDelete)
+    public void NewClient()
     {
-        if (CanDelete)
-            transform.DOMoveX(transform.position.y - 20f, 0.5f).OnComplete(() => Destroy(gameObject));
-        else
-            transform.DOMoveX(transform.position.y + 0.1f, 0.5f).SetDelay(Random.Range(0.5f, 1.5f)).OnComplete(() => Order());
+        transform.DOMoveX(transform.position.y + 0.1f, 0.5f).OnComplete(() => Order());
+    }
+
+    public void DeleteCurrentClient()
+    {
+        transform.DOMoveX(transform.position.y - 20f, 0.5f).OnComplete(() => Destroy(gameObject));
     }
 
     private void Order()
